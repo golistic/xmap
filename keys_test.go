@@ -19,9 +19,9 @@ func TestKeys(t *testing.T) {
 		}
 
 		exp := []string{"bar", "foo"}
-		have := xmap.Keys(m)
-		sort.Strings(have)
-		xt.Eq(t, exp, have)
+		got := xmap.Keys(m)
+		sort.Strings(got)
+		xt.Eq(t, exp, got)
 	})
 
 	t.Run("int keys", func(t *testing.T) {
@@ -31,9 +31,9 @@ func TestKeys(t *testing.T) {
 		}
 
 		exp := []int{123, 987}
-		have := xmap.Keys(m)
-		sort.Ints(have)
+		got := xmap.Keys(m)
+		sort.Ints(got)
 
-		xt.Eq(t, exp, have)
+		xt.Eq(t, exp, got)
 	})
 }
