@@ -16,25 +16,25 @@ func TestEqual(t *testing.T) {
 	t.Run("lengths are not equal", func(t *testing.T) {
 		m1 := map[string]int{"1": 1}
 		m2 := map[string]int{"1": 1, "2": 2}
-		xt.Assert(t, !xmap.Equal[string, int](m1, m2))
+		xt.Assert(t, !xmap.Equal(m1, m2))
 	})
 
 	t.Run("lengths are not equal", func(t *testing.T) {
 		m1 := map[string]string{"1": "1"}
 		m2 := map[string]string{"1": "1"}
-		xt.Assert(t, xmap.Equal[string](m1, m2))
+		xt.Assert(t, xmap.Equal(m1, m2))
 	})
 
 	t.Run("values are not equal", func(t *testing.T) {
 		m1 := map[float64]string{1.2: "1"}
 		m2 := map[float64]string{1.2: "1123"}
-		xt.Assert(t, !xmap.Equal[float64, string](m1, m2))
+		xt.Assert(t, !xmap.Equal(m1, m2))
 	})
 
 	t.Run("values are equal", func(t *testing.T) {
 		m1 := map[uint]string{2: "something", 1: "1123"}
 		m2 := map[uint]string{1: "1123", 2: "something"}
-		xt.Assert(t, xmap.Equal[uint, string](m1, m2))
+		xt.Assert(t, xmap.Equal(m1, m2))
 		xt.Assert(t, reflect.DeepEqual(m1, m2))
 	})
 
@@ -52,7 +52,7 @@ func TestEqual(t *testing.T) {
 		}
 
 		xt.Panics(t, func() {
-			xmap.Equal[string, any](m1, m2)
+			xmap.Equal(m1, m2)
 		})
 	})
 }
@@ -67,7 +67,7 @@ func BenchmarkEqual(b *testing.B) {
 	}
 
 	b.Run("using our Equal", func(b *testing.B) {
-		xmap.Equal[int, string](m1, m2)
+		xmap.Equal(m1, m2)
 	})
 
 	b.Run("using our reflect.DeepEqual", func(b *testing.B) {

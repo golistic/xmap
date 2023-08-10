@@ -9,7 +9,7 @@ package xmap
 // by Go.
 // See this as a stricter, more specialized, but faster version of
 // `reflect.DeepEqual` (when comparing maps).
-func Equal[K, V comparable](m1, m2 map[K]V) bool {
+func Equal[M1, M2 ~map[K]V, K, V comparable](m1 M1, m2 M2) bool {
 	if len(m1) != len(m2) {
 		return false
 	}
